@@ -13,6 +13,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment';
 import { MaterialModule } from './material.module';
 import { UiModule } from './ui/ui.module';
+import { HomeModule } from './components/home/home.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { UiModule } from './ui/ui.module';
     AngularFireAuthModule,
     AngularFireStorageModule,
     MaterialModule,
-    UiModule
+    UiModule,
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
