@@ -1,0 +1,13 @@
+#toggler {
+  border-radius: 50%;
+  padding: 0;
+  width: 36px;
+  min-width: 0;
+}
+
+@media only screen and (min-width: 768px) {
+
+  #toggler {
+    display: none;
+  }
+}

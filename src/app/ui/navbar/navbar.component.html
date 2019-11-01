@@ -1,1 +1,7 @@
-<mat-toolbar color="primary"></mat-toolbar>
+<mat-toolbar color="primary" class="navbar">
+  <mat-toolbar-row #navbar class="nav-content">
+    <button mat-button id="toggler" (click)="toggleSidebar()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
