@@ -1,0 +1,16 @@
+$sidebar-width: 200px;
+
+#sidebar-content {
+  background-color: gray;
+  height: 100vh;
+
+  position: fixed;
+  width: $sidebar-width;
+
+  transform: translate(-$sidebar-width);
+  transition: all .4s ease;
+}
+
+#sidebar-content.sidebar-opened {
+  transform: translate(0);
+}

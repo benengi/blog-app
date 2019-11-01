@@ -13,6 +13,10 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 
-  protected toggleSidebar() {}
+  protected toggleSidebar() {
+    const sidebar = document.getElementById('sidebar-content');
+    console.log(sidebar);
+    sidebar.classList.toggle('sidebar-opened');
+  }
 
 }
