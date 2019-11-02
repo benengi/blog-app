@@ -10,3 +10,10 @@ $sidebar-width: 260px;
   transform: translate($sidebar-width);
 }
 
+.content {
+  width: 100%;
+  padding: 0 10px;
+  margin: auto;
+  max-width: 100%; // this shall scale later on
+}
+
