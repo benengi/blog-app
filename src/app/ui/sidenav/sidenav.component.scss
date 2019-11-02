@@ -1,6 +1,11 @@
 $sidebar-width: 260px;
 
 #sidebar-content {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   height: 100vh;
 
   position: fixed;
@@ -8,6 +13,10 @@ $sidebar-width: 260px;
 
   transform: translate(-$sidebar-width);
   transition: all .4s ease;
+
+  .footer-nav {
+    background: gray;
+  }
 }
 
 #sidebar-content.sidebar-opened {
