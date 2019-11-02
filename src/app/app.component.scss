@@ -1,0 +1,10 @@
+$sidebar-width: 200px;
+
+.main-content {
+  transition: all .4s ease;
+}
+
+.main-content.opened {
+  transform: translate($sidebar-width);
+}
+

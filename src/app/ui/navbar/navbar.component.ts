@@ -14,8 +14,10 @@ export class NavbarComponent implements OnInit {
   }
 
   protected toggleSidebar() {
+    const mainContent = document.getElementsByClassName('main-content')[0];
     const sidebar = document.getElementById('sidebar-content');
-    console.log(sidebar);
+
+    mainContent.classList.toggle('opened');
     sidebar.classList.toggle('sidebar-opened');
   }
 
