@@ -4,8 +4,8 @@ import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   /*{ path: '',
-    loadChildren: './components/home/home.module#HomeModule'
-  }*/
+    loadChildren: './components/auth/auth.module#AuthModule'
+  },*/
   { path: '', component: HomeComponent }
 ];
 

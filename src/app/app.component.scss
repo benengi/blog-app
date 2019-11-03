@@ -7,7 +7,7 @@ $sidebar-width: 260px;
 }
 
 .main-content.opened {
-  transform: translate($sidebar-width);
+  transform: translateX($sidebar-width);
 }
 
 .content {

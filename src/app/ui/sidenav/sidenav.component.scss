@@ -10,7 +10,7 @@ $sidebar-width: 260px;
   position: fixed;
   width: $sidebar-width;
 
-  transform: translate(-$sidebar-width);
+  transform: translateX(-$sidebar-width);
   transition: all .4s ease;
 
   .footer-nav {
@@ -19,5 +19,5 @@ $sidebar-width: 260px;
 }
 
 #sidebar-content.sidebar-opened {
-  transform: translate(0);
+  transform: translateX(0);
 }
