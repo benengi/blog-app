@@ -1,10 +1,19 @@
 $sidebar-width: 260px;
 
+.list-icon {
+  margin-right: 1rem;
+}
+
+.copyright {
+  font-size: 0.8rem;
+}
+
 #sidebar-content {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
+  font-family: 'Lato', sans-serif !important;
   height: 100vh;
 
   position: fixed;
@@ -14,8 +23,12 @@ $sidebar-width: 260px;
   transition: all .4s ease;
 
   .footer-nav {
-    background: gray;
+    background: #ebebeb;
   }
+}
+
+mat-list-item {
+  font-family: 'Lato', sans-serif;
 }
 
 #sidebar-content.sidebar-opened {
