@@ -6,12 +6,17 @@
     <div class="nav-brand">Bloggy Blog</div>
     <div class="nav">
       <div class="nav-links">
-        <button mat-button>Articles</button>
+        <button mat-button class="nav-link">
+          Articles
+          <i class="fas fa-caret-down"></i>
+        </button>
       </div>
       <div class="nav-footer">
-        <button mat-button>Write for Us</button>
-        <button mat-button>Contact</button>
-        <button mat-button (click)="openLogin()">Login</button>
+        <button mat-button class="nav-link">Write for Us</button>
+        <button mat-button class="nav-link">Contact</button>
+        <button mat-icon-button class="nav-link" (click)="openLogin()">
+          <mat-icon>account_circle</mat-icon>
+        </button>
       </div>
     </div>
   </mat-toolbar-row>

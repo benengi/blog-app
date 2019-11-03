@@ -15,9 +15,18 @@
 
 @media only screen and (min-width: 768px) {
 
+  .nav-brand {
+    margin-right: 1rem;
+  }
+
   .nav {
     display: flex;
     width: 100%;
+    font-family: 'Lato', sans-serif;
+
+    .nav-link {
+      font-family: 'Lato', sans-serif;
+    }
 
     .nav-footer {
       margin-left: auto;
