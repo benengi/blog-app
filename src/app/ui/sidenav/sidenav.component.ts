@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { LoginComponent } from 'src/app/components/login/login.component';
+import { AuthComponent } from 'src/app/components/auth/auth.component';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -16,7 +16,7 @@ export class SidenavComponent implements OnInit {
   }
 
   protected openLogin() {
-    const dialogRef = this.dialog.open(LoginComponent, {
+    const dialogRef = this.dialog.open(AuthComponent, {
       width: '250px',
       data: {}
     });

@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
 import { MaterialModule } from './material.module';
 import { UiModule } from './ui/ui.module';
 import { HomeModule } from './components/home/home.module';
-import { LoginModule } from './components/login/login.module';
+import { AuthModule } from './components/auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,7 @@ import { LoginModule } from './components/login/login.module';
     MaterialModule,
     UiModule,
     HomeModule,
-    LoginModule
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
