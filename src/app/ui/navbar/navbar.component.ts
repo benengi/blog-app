@@ -25,7 +25,6 @@ export class NavbarComponent implements OnInit {
 
   protected openLogin() {
     const dialogRef = this.dialog.open(AuthComponent, {
-      width: '250px',
       data: {}
     });
   }
