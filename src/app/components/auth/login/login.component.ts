@@ -22,6 +22,11 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.auth.login(this.loginForm.value.username, this.loginForm.value.password);
+  }
+
+  googleAuth() {
+    this.auth.googleSignin();
   }
 
   private initLoginForm() {
