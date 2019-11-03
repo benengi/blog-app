@@ -14,3 +14,11 @@ body { margin: 0; font-family: 'Lato', "Helvetica Neue", sans-serif !important; 
 .cdk-overlay-pane {
   max-width: 90vw !important;
 }
+
+.mat-tab-labels {
+  justify-content: space-around;
+}
+
+.mat-ink-bar {
+  background-color: #3F51B5 !important;
+}

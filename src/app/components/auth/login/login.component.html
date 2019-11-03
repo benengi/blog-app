@@ -1,14 +1,18 @@
 <div class="login-form">
-  <form [formGroup]="loginForm" (ngSubmit)="login()">
-    <mat-form-field>
+  <form [formGroup]="loginForm" (ngSubmit)="login()" class="form">
+
+    <mat-form-field class="login-field" >
       <input matInput placeholder="Username" formControlName="username">
     </mat-form-field>
+
     <mat-form-field>
       <input matInput type="password" placeholder="Password" formControlName="password">
     </mat-form-field>
 
-    <button mat-raised-button color="primary" type="submit">Log In</button>
+    <button mat-raised-button color="primary" type="submit" class="submit">Log In</button>
   </form>
-  OR
-  <button mat-raised-button color="primary" (click)="googleAuth()">Sign In With Google</button>
+  <p class="or">or</p>
+  <div class="btn-container">
+    <button mat-raised-button color="primary" (click)="googleAuth()" class="google">Sign In With Google</button>
+  </div>
 </div>
