@@ -17,7 +17,7 @@ export class SidenavComponent implements OnInit {
 
   protected openLogin() {
     const dialogRef = this.dialog.open(AuthComponent, {
-      width: '250px',
+      width: '100vw',
       data: {}
     });
   }

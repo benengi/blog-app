@@ -6,8 +6,13 @@ $sidebar-width: 260px;
   height: 100vh;
 }
 
+.main-content {
+  position: fixed;
+  width: 100vw;
+}
+
 .main-content.opened {
-  transform: translateX($sidebar-width);
+  transform: translate($sidebar-width, 0);
 }
 
 .content {

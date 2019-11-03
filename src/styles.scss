@@ -2,10 +2,15 @@
 $sidebar-width: 200px;
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: 'Lato', "Helvetica Neue", sans-serif !important; }
 
 // This is to always have the modals centered no matter how we manipulate the screen
 .cdk-global-overlay-wrapper {
   width: 100vw;
   height: 100vh;
+}
+
+// Modal be 90% width for mobile
+.cdk-overlay-pane {
+  max-width: 90vw !important;
 }
