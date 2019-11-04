@@ -2,7 +2,11 @@
     <!-- template will replace this div -->
     <!-- Loading Screen -->
 </div>
-
+<div id="close-btn">
+  <button mat-fab (click)="close()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
 <!-- User NOT logged in -->
 <ng-template #guest>
     <!-- <h3>Howdy, GUEST</h3>
@@ -23,7 +27,6 @@
       </ng-template>
     </mat-tab>
   </mat-tab-group>
-
 </ng-template>
 
 <!-- User logged in -->
