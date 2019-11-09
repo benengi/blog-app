@@ -2,11 +2,11 @@
     <!-- template will replace this div -->
     <!-- Loading Screen -->
 </div>
-<div id="close-btn">
+<!--<div id="close-btn">
   <button mat-fab (click)="close()">
     <mat-icon>close</mat-icon>
   </button>
-</div>
+</div> -->
 <!-- User NOT logged in -->
 <ng-template #guest>
     <!-- <h3>Howdy, GUEST</h3>
@@ -15,7 +15,13 @@
     <button (click)="auth.googleSignin()">
         <i class="fa fa-google"></i> Connect Google
     </button> -->
+    <div id="close-btn">
+      <button mat-fab (click)="close()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
   <mat-tab-group>
+    
     <mat-tab label="Login">
       <ng-template matTabContent>
         <app-login></app-login>

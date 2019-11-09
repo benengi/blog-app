@@ -4,8 +4,10 @@
 
 #close-btn {
   position: absolute;
-  top: 23vh;
+  top: 0;
   right: 0;
+  transition: all .4s ease;
+  display: none; // taking too much time, let's just work on this once we rework the login modal
 
   .mat-fab {
     background-color: white !important;
