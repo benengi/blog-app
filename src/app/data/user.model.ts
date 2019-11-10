@@ -1,13 +1,9 @@
-export enum Membership {
-  reader = 0,
-  writer = 1,
-  admin = 2
-}
+import { Membership } from './membership.model';
 
 export interface User {
   uid: string;
   email: string;
-  membership: Membership;
+  membership?: Membership;
   photoURL?: string;
   displayName?: string;
   description?: string;

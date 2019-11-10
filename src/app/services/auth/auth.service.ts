@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { switchMap  } from 'rxjs/operators';
+import { Observable, of, combineLatest } from 'rxjs';
+import { switchMap, map  } from 'rxjs/operators';
 import { auth } from 'firebase';
-import { User, Membership } from 'src/app/data/user.model';
+import { User } from 'src/app/data/user.model';
+import { Membership, MemberType } from 'src/app/data/membership.model';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +36,7 @@ export class AuthService {
 
   async login(email: string, password: string) {
     const credential = await this.afAuth.auth.signInWithEmailAndPassword(email, password);
-    // this.updateUserData(credential.user);
+    this.updateUserData(credential.user);
   }
 
   async register(email: string, password: string) {
@@ -58,17 +59,28 @@ export class AuthService {
     this.updateUserData(user);
   }
 
-  private updateUserData(user) {
+  private async updateUserData(user) {
     // Sets user data to firestore on login
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
+    const memberRef: AngularFirestoreDocument<Membership> = this.afs.doc(`memberships/${user.uid}`);
 
     const data = {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
       photoURL: user.photoURL,
-      membership: user.membership || Membership.reader
     };
+
+    const memberData: Membership = {
+      uid: user.uid,
+      displayName: user.displayName,
+      type: MemberType.reader
+    };
+
+    memberRef.valueChanges().subscribe(membership => {
+      memberData.type = membership.type || MemberType.reader;
+      memberRef.set(memberData, { merge: true });
+    });
 
     return userRef.set(data, { merge: true });
   }
@@ -76,22 +88,26 @@ export class AuthService {
   private getAuthState() {
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => {
-          // Logged in
         if (user) {
-          return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
+          return this.getUserInfo(user);
         } else {
-          // Logged out
           return of(null);
         }
       })
     );
   }
 
-  private setUserDoc(credential: auth.UserCredential) {
-    const uid = credential.user.uid;
-    const additionalInfo = credential.additionalUserInfo ?
-      credential.additionalUserInfo.profile : null;
+  private getUserInfo(userInfo: User): Observable<User>  {
+    const user$ = this.afs.doc<User>(`users/${userInfo.uid}`).valueChanges();
+    const membership$ = this.afs.doc<Membership>(`memberships/${userInfo.uid}`).valueChanges();
 
-    this.afs.doc(`users/${uid}`).set({ additionalInfo }, { merge: true });
+    return combineLatest([user$, membership$]).pipe(
+      map(([user, membership]) => {
+        return {
+          ...user,
+          membership
+        };
+      })
+    );
   }
 }
