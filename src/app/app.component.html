@@ -1,11 +1,13 @@
-<div *ngIf="auth.user$ | async as user;">
-  <!-- template will replace this div -->
-  <ui-sidenav [user]="user"></ui-sidenav>
-  <div class="main-content">
-    <ui-navbar [user]="user"></ui-navbar>
-    <div class="content">
-      <router-outlet></router-outlet>
+<div class="loading" *ngIf="loading; else authenticated">Loading</div>
+
+<ng-template #authenticated>
+  <div class="container">
+    <ui-sidenav [user]="user"></ui-sidenav>
+      <div class="main-content">
+      <ui-navbar [user]="user"></ui-navbar>
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
-</div>
-
+</ng-template>
