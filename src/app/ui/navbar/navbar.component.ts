@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthComponent } from 'src/app/components/auth/auth.component';
 import { User } from 'src/app/data/user.model';
+import { Membership, MemberType } from 'src/app/data/membership.model';
 
 @Component({
   // tslint:disable-next-line: component-selector

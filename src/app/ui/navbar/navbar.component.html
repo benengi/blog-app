@@ -12,7 +12,7 @@
         </button>
       </div>
       <div class="nav-footer">
-        <button *ngIf="!user; else writer" mat-button class="nav-link">Write for Us</button>
+        <button *ngIf="user && user.membership.type == 0; else writer" mat-button class="nav-link">Write for Us</button>
         <button mat-button class="nav-link">Contact</button>
         <button mat-icon-button class="nav-link" (click)="openLogin()">
           <mat-icon>account_circle</mat-icon>
@@ -23,5 +23,7 @@
 </mat-toolbar>
 
 <ng-template #writer>
-  <button mat-button class="nav-link">Write a Post</button>
+  <button mat-button class="nav-link">
+    Write a Post
+  </button>
 </ng-template>

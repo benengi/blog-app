@@ -1,8 +1,11 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<ui-sidenav></ui-sidenav>
-<div class="main-content">
-  <ui-navbar [user]="auth.user$ | async"></ui-navbar>
-  <div class="content">
-    <router-outlet></router-outlet>
+<div *ngIf="auth.user$ | async as user;">
+  <!-- template will replace this div -->
+  <ui-sidenav [user]="user"></ui-sidenav>
+  <div class="main-content">
+    <ui-navbar [user]="user"></ui-navbar>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>
+
