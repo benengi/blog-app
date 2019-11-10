@@ -35,12 +35,17 @@ export class AuthService {
 
   async login(email: string, password: string) {
     const credential = await this.afAuth.auth.signInWithEmailAndPassword(email, password);
-    this.updateUserData(credential.user);
+    // this.updateUserData(credential.user);
   }
 
   async register(email: string, password: string) {
-    await this.afAuth.auth.createUserWithEmailAndPassword(email, password);
-    this.sendEmailVerification();
+    const credential = await this.afAuth.auth.createUserWithEmailAndPassword(email, password);
+    const x = this.sendEmailVerification().then(() => {
+      this.updateUserData(credential.user);
+    });
+    x.then(res => {
+      console.log(res);
+    });
   }
 
   async sendEmailVerification() {
@@ -80,5 +85,13 @@ export class AuthService {
         }
       })
     );
+  }
+
+  private setUserDoc(credential: auth.UserCredential) {
+    const uid = credential.user.uid;
+    const additionalInfo = credential.additionalUserInfo ?
+      credential.additionalUserInfo.profile : null;
+
+    this.afs.doc(`users/${uid}`).set({ additionalInfo }, { merge: true });
   }
 }

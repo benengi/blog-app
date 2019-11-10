@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthComponent } from 'src/app/components/auth/auth.component';
+import { User } from 'firebase';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -10,6 +11,7 @@ import { AuthComponent } from 'src/app/components/auth/auth.component';
 })
 export class SidenavComponent implements OnInit {
 
+  @Input() user: User;
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {

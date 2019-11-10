@@ -1,7 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <ui-sidenav></ui-sidenav>
 <div class="main-content">
-  <ui-navbar></ui-navbar>
+  <ui-navbar [user]="auth.user$ | async"></ui-navbar>
   <div class="content">
     <router-outlet></router-outlet>
   </div>
