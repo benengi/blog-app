@@ -16,9 +16,25 @@
       <mat-divider></mat-divider>
 
       <mat-list-item>
-          <mat-icon class="list-icon">library_books</mat-icon>
+        <mat-icon class="list-icon">library_books</mat-icon>
         <p>Articles</p>
       </mat-list-item>
+
+      <mat-divider></mat-divider>
+
+      <mat-list-item *ngIf="!user || user?.membership.type === 0; else writer">
+        <mat-icon class="list-icon">edit</mat-icon>
+        <p>Write for Us</p>
+      </mat-list-item>
+
+      <mat-divider></mat-divider>
+
+      <ng-template #writer>
+        <mat-list-item>
+          <mat-icon class="list-icon">edit</mat-icon>
+          <p>Write a Post</p>
+        </mat-list-item>
+      </ng-template>
   </mat-list>
   </div>
   <div class="footer-nav">

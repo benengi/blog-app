@@ -19,10 +19,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    /* this.auth.user$.subscribe(user => {
-      this.user = user;
-      this.loading = false;
-    }); */
     this.loading$ = this.auth.user$.pipe(
       switchMap((user: User) => {
         this.user = user;
