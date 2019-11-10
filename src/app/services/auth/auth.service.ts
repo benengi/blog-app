@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { switchMap  } from 'rxjs/operators';
 import { auth } from 'firebase';
-import { User } from 'src/app/data/user.model';
+import { User, Membership } from 'src/app/data/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +48,11 @@ export class AuthService {
     this.router.navigate(['/']);
   }
 
+  private updateUserMembership(user: User, membership: Membership) {
+    user.membership = membership;
+    this.updateUserData(user);
+  }
+
   private updateUserData(user) {
     // Sets user data to firestore on login
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
@@ -56,11 +61,11 @@ export class AuthService {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
-      photoURL: user.photoURL
+      photoURL: user.photoURL,
+      membership: user.membership || Membership.reader
     };
 
     return userRef.set(data, { merge: true });
-
   }
 
   private getAuthState() {
