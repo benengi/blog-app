@@ -1,4 +1,6 @@
-<div class="loading" *ngIf="loading; else authenticated">Loading</div>
+<div class="loading" *ngIf="loading; else authenticated">
+  <ui-spinner></ui-spinner>
+</div>
 
 <ng-template #authenticated>
   <div class="container">
