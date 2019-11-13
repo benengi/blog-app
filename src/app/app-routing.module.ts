@@ -6,7 +6,11 @@ const routes: Routes = [
   /*{ path: '',
     loadChildren: './components/auth/auth.module#AuthModule'
   },*/
-  { path: '', component: HomeComponent }
+  { path: '', component: HomeComponent },
+  {
+    path: 'editor',
+    loadChildren: './components/editor/editor.module#EditorModule'
+  }
 ];
 
 @NgModule({
