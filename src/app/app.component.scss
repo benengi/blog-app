@@ -9,6 +9,7 @@ $sidebar-width: 260px;
 .main-content {
   transition: all .4s ease;
   box-shadow: 0 0 10px 0 rgba(0,0,0,.2);
+  overflow: scroll;
   height: 100vh;
 }
 

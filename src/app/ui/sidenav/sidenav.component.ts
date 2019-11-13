@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthComponent } from 'src/app/components/auth/auth.component';
-import { User } from 'firebase';
+import { User } from 'src/app/data/user.model';
 
 @Component({
   // tslint:disable-next-line: component-selector
