@@ -1,8 +1,14 @@
+export interface Block {
+  data: any;
+  type: string;
+}
+
 export interface Article {
   id: string;
   uid: string;
   author: string; // might be diff from uid - contributions for instance
-  post: string;
+  title: string;
+  post: Block[];
   photoURL: string;
   tags: string[];
   created: Date;
