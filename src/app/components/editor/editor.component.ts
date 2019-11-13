@@ -11,8 +11,19 @@ import Embed from '@editorjs/embed';
 })
 export class EditorComponent implements OnInit {
   editor: EditorJS;
+  titleEditor: EditorJS;
 
   constructor() {
+    this.titleEditor = new EditorJS({
+      holderId: 'title',
+      autofocus: true,
+      placeholder: 'Add a Title',
+      tools: {
+        header: Header
+      },
+      initialBlock: 'header'
+    });
+
     this.editor = new EditorJS({
       holderId: 'editorjs',
       tools: {
@@ -47,6 +58,14 @@ export class EditorComponent implements OnInit {
   }
 
   save() {
+    /*
+    * Saving Rules
+    * (1) First Block should be a Title block somehow
+    * (2) Save the Article as-is using JSON
+    * (3) Created Date is set Date won't change ever
+    * (4) Updated Date is always, well, updated
+    * (5) Author is same as uid unless Manually change on DB (for now)
+    */
     this.editor.save().then((outputData) => {
       console.log(outputData);
     });
