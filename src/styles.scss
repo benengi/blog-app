@@ -24,10 +24,23 @@ body { margin: 0; font-family: 'Lato', "Helvetica Neue", sans-serif !important; 
 }
 
 // Editor styles
-.ce-block.ce-block--focused {
-  border: 0.5px solid black;
+
+// Title Block
+#title .ce-block.ce-block--focused {
+  border: 0.5px solid gray;
 }
+
+#title .codex-editor__redactor {
+  padding-bottom: 0 !important;
+}
+
+#title .ce-header{
+  display: flex;
+  justify-content: center;
+}
+
 
 .ce-header {
   text-align: center;
+  font-size: 4rem;
 }
