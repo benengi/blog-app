@@ -1,4 +1,10 @@
-<h1>Create a New Article</h1>
-<div id="title"></div>
-<div id="editorjs"></div>
-<button mat-raised-button (click)="save()">Save Article</button>
+<div class="loading" *ngIf="isSaving; else editor">
+  <ui-spinner></ui-spinner>
+</div>
+<ng-template #editor>
+  <div id="photo"></div>
+  <div id="title"></div>
+  <div id="editorjs"></div>
+  <button mat-raised-button (click)="save()">Save Article</button>
+</ng-template>
+

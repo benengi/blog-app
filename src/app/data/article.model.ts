@@ -9,8 +9,8 @@ export interface Article {
   author: string; // might be diff from uid - contributions for instance
   title: string;
   post: Block[];
-  photoURL: string;
-  tags: string[];
+  photoURL?: string;
+  tags?: string[];
   created: Date;
   updated: Date;
 }

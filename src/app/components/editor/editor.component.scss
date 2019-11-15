@@ -1,3 +1,9 @@
+.loading {
+  position: absolute;
+  top: calc(50% - 20px);
+  right: calc(50% - 20px);
+}
+
 #title {
   padding: 2rem;
 }
