@@ -1,0 +1,26 @@
+.content {
+  padding: 10px;
+}
+
+.article-title {
+  font-family: Lato,sans-serif;
+  font-weight: 900;
+  font-size: 3rem;
+}
+
+.content-meta {
+  .info {
+    display: flex;
+    font-size: 0.85rem;
+    color: #868583;
+    padding: 0;
+
+    .byline {
+      margin-right: 1rem;
+    }
+
+    #author {
+      list-style: none;
+    }
+  }
+}

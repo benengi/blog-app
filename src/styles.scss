@@ -24,14 +24,13 @@ body { margin: 0; font-family: 'Lato', "Helvetica Neue", sans-serif !important; 
 }
 
 // Editor styles
+.codex-editor__redactor {
+  padding-bottom: 0 !important;
+}
 
 // Title Block
 #title .ce-block.ce-block--focused {
   border: 0.5px solid gray;
-}
-
-#title .codex-editor__redactor {
-  padding-bottom: 0 !important;
 }
 
 #title .ce-header{

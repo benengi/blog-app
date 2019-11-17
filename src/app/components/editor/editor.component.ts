@@ -3,12 +3,13 @@ import EditorJS from '@editorjs/editorjs';
 import Header from '@editorjs/header';
 import List from '@editorjs/list';
 import Embed from '@editorjs/embed';
-import SimpleImage from '@editorjs/simple-image';
 import ImageTool from '@editorjs/image';
 
 import { ArticlesService } from 'src/app/services/articles/articles.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { User } from 'src/app/data/user.model';
+import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-editor',
@@ -24,15 +25,16 @@ export class EditorComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-    private articleService: ArticlesService) {
-      this.initTitleEditor();
-      this.initBodyEditor();
-      this.initPhotoURLEditor();
+    private articleService: ArticlesService,
+    private router: Router) {
   }
 
   ngOnInit() {
     this.auth.user$.subscribe(user => {
       this.user = user;
+      this.initTitleEditor();
+      this.initBodyEditor();
+      this.initPhotoURLEditor();
     });
   }
 
@@ -47,7 +49,6 @@ export class EditorComponent implements OnInit {
       this.editor.save().then((outputData) => {
         this.articleService.createArticle(
           {
-            id: '',
             uid: this.user.uid,
             author: this.user.displayName,
             title: name,
@@ -55,8 +56,9 @@ export class EditorComponent implements OnInit {
             created: new Date(titleData.time),
             updated: new Date(titleData.time)
           }
-        ).then(() => {
+        ).then((docRef) => {
           this.isSaving = false;
+          this.router.navigate(['edit-article', docRef.id]);
         });
       });
     });
@@ -107,7 +109,12 @@ export class EditorComponent implements OnInit {
       holderId: 'photo',
       tools: {
         image: {
-          class: ImageTool
+          class: ImageTool,
+          config: {
+            endpoints: {
+              byFile: environment.firebase.storageBucket
+            }
+          }
         }
       },
       initialBlock: 'image'
