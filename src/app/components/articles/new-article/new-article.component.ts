@@ -32,6 +32,8 @@ export class NewArticleComponent implements OnInit {
   downloadURL: Observable<string>;
   // State for dropzone CSS toggling
   isHovering: boolean;
+  // Path to the img URL
+  imgPath: string;
 
   // User and Loading
   user: User;
@@ -43,7 +45,8 @@ export class NewArticleComponent implements OnInit {
     private router: Router,
     private storage: AngularFireStorage,
     private db: AngularFirestore
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.auth.user$.subscribe(user => {
@@ -69,13 +72,13 @@ export class NewArticleComponent implements OnInit {
     }
 
     // The storage path
-    const path = `test/${new Date().getTime()}_${file.name}`;
+    this.imgPath = `test/${new Date().getTime()}_${file.name}`;
 
     // Totally optional metadata
     const customMetadata = { app: 'My AngularFire-powered PWA!' };
 
     // The main task
-    this.task = this.storage.upload(path, file, { customMetadata });
+    this.task = this.storage.upload(this.imgPath, file, { customMetadata });
 
     // Progress monitoring
     this.percentage = this.task.percentageChanges();
@@ -103,7 +106,8 @@ export class NewArticleComponent implements OnInit {
             title: name,
             post: outputData.blocks,
             created: new Date(titleData.time),
-            updated: new Date(titleData.time)
+            updated: new Date(titleData.time),
+            photoURL: this.imgPath
           }
         ).then((docRef) => {
           this.isSaving = false;

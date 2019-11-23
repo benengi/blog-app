@@ -4,6 +4,9 @@
   </div>
 
   <ng-template #loadedArticle>
+    <div class="article-img" *ngIf="article.photoURL">
+      <img [src]="imgURL" alt="">
+    </div>
     <h1 class="article-title">{{ article?.title }}</h1>
     <div class="content-meta">
       <ul class="info">
