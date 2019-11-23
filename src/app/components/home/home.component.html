@@ -1,7 +1,12 @@
 <div class="content">
   <div class="featured" *ngIf="featuredArticles">
-    <div class="featured-main">
-      <img [src]="featuredArticles[0].photoURL" alt="featured article image">
+    <div class="featured-main" 
+    [ngStyle]="
+    {
+      'background-image': 'url(' + featuredArticles[0].photoURL + ')'
+    }
+    "
+    >
       <h3 class="featured-article-title">{{ featuredArticles[0].title }}</h3>
       <div class="content-meta">
         <ul class="info">
@@ -10,6 +15,43 @@
         </ul>
       </div>
     </div>
-    <div class="featured-cards"></div>
+
+    <div class="featured-cards">
+      <div class="card" id="card-1">
+        <!--<img class="card-img" [src]="featuredArticles[1].photoURL" alt="">-->
+        <div class="card-img" [ngStyle]="
+        {
+          'background-image': 'url(' + featuredArticles[1].photoURL + ')'
+        }
+        "></div>
+        <div class="card-content">
+          <h3 class="featured-article-title">{{ featuredArticles[1].title }}</h3>
+          <div class="content-meta">
+            <ul class="info">
+              <li class="byline" id="author">By {{ featuredArticles[1].author }}</li>
+              <li class="byline">{{ featuredArticles[1].created | firestoreDate }}</li>
+            </ul>
+          </div>
+        </div>
+        
+      </div>
+      <div class="card" id="card-2">
+        <!--<img class="card-img" [src]="featuredArticles[2].photoURL" alt="">-->
+        <div class="card-img"  [ngStyle]="
+        {
+          'background-image': 'url(' + featuredArticles[2].photoURL + ')'
+        }
+        "></div>
+        <div class="card-content">
+          <h3 class="featured-article-title">{{ featuredArticles[2].title }}</h3>
+          <div class="content-meta">
+            <ul class="info">
+              <li class="byline" id="author">By {{ featuredArticles[2].author }}</li>
+              <li class="byline">{{ featuredArticles[2].created | firestoreDate }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

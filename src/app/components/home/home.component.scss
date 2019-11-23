@@ -1,3 +1,61 @@
 .content {
   width: 100%
 }
+
+.featured {
+  .featured-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: white;
+
+    width: 100%;
+    min-height: 33vh;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% center;
+
+    h3 {
+      margin: 0;
+      font-size: 2rem;
+      margin-left: 1rem;
+    }
+
+    ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+      margin-left: 1rem;
+    }
+
+    li {
+      margin: 0.7rem;
+    }
+    
+  }
+
+  .featured-cards {
+    display: flex;
+
+    .card {
+      width: 100%;
+      margin: 1rem;
+
+      .card-img {
+        min-height: 25vh;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 50% center;
+      }
+
+      .card-content {
+        .info {
+          color: #8e8e8e;
+        }
+      }
+    }
+
+  }
+}
