@@ -13,6 +13,7 @@ import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/data/user.model';
+import { Article } from 'src/app/data/article.model';
 
 @Component({
   selector: 'app-new-article',
@@ -99,22 +100,33 @@ export class NewArticleComponent implements OnInit {
       // @ts-ignore
       const name = titleData.blocks[0].data.text;
       this.editor.save().then((outputData) => {
-        this.articleService.createArticle(
-          {
-            uid: this.user.uid,
-            author: this.user.displayName,
-            title: name,
-            post: outputData.blocks,
-            created: new Date(titleData.time),
-            updated: new Date(titleData.time),
-            photoURL: this.imgPath
-          }
-        ).then((docRef) => {
-          this.isSaving = false;
-          this.router.navigate(['articles', docRef.id]);
+        const imgURL$ = this.getImgURL(this.imgPath);
+        imgURL$.subscribe(url => {
+          this.articleService.createArticle(
+            {
+              uid: this.user.uid,
+              author: this.user.displayName,
+              title: name,
+              post: outputData.blocks,
+              created: new Date(titleData.time),
+              updated: new Date(titleData.time),
+              photoURL: url
+            }
+          ).then((docRef) => {
+            this.isSaving = false;
+            this.router.navigate(['articles', docRef.id]);
+          });
         });
       });
     });
+  }
+
+  private getImgURL(photoURL: string): Observable<string> {
+    const storageRef = this.storage.ref(photoURL);
+    return storageRef.getDownloadURL().pipe(url => {
+      return url;
+    });
+
   }
 
   private initTitleEditor() {

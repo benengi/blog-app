@@ -14,7 +14,6 @@ export class ViewArticleComponent implements OnInit {
 
   article: Article;
   isLoading = true;
-  imgURL = '';
 
   constructor(
     public activeRoute: ActivatedRoute,
@@ -26,22 +25,7 @@ export class ViewArticleComponent implements OnInit {
     this.getArticle().subscribe(article => {
       this.isLoading = false;
       this.article = article;
-      this.getImgURL();
     });
-  }
-
-  protected getImgURL() {
-    if (!this.article) {
-      return;
-    } else if (!this.article.photoURL) {
-      return;
-    }
-
-    const storageRef = this.storage.ref(this.article.photoURL);
-    storageRef.getDownloadURL().subscribe(url => {
-      this.imgURL = url;
-    });
-
   }
 
   private getArticle(): Observable<Article> {

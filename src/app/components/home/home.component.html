@@ -1,1 +1,15 @@
-<div class="content"></div>
+<div class="content">
+  <div class="featured" *ngIf="featuredArticles">
+    <div class="featured-main">
+      <img [src]="featuredArticles[0].photoURL" alt="featured article image">
+      <h3 class="featured-article-title">{{ featuredArticles[0].title }}</h3>
+      <div class="content-meta">
+        <ul class="info">
+          <li class="byline" id="author">By {{ featuredArticles[0].author }}</li>
+          <li class="byline">{{ featuredArticles[0].created | firestoreDate }}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="featured-cards"></div>
+  </div>
+</div>

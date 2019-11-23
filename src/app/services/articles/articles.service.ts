@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Article } from 'src/app/data/article.model';
 import { map } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +14,16 @@ export class ArticlesService {
 
   createArticle(article: Article) {
     return this.afs.collection('articles').add({...article});
+  }
+
+  getLatestArticles(numOfArticles: number): Observable<Article[]> {
+    this.articlesCol = this.afs.collection('articles',
+      ref => ref
+      .orderBy('created', 'desc')
+      .limit(numOfArticles)
+    );
+
+    return this.articlesCol.valueChanges({ id: 'id' });
   }
 
   getArticle(id: string) {
