@@ -1,1 +1,21 @@
-<p>view-article works!</p>
+<div class="content">
+  <div class="loading" *ngIf="!article; else loadedArticle">
+    <ui-spinner></ui-spinner>
+  </div>
+
+  <ng-template #loadedArticle>
+    <h1 class="article-title">{{ article?.title }}</h1>
+    <div class="content-meta">
+      <ul class="info">
+        <li class="byline" id="author">By {{ article.author }}</li>
+        <li class="byline">{{ article.created | firestoreDate }}</li>
+      </ul>
+    </div>
+    <hr>
+    <div class="article-content">
+      <p class="article-pgraph" *ngFor="let pgraph of article?.post">
+        {{ pgraph.data?.text }}
+      </p>
+    </div>
+  </ng-template>
+</div>

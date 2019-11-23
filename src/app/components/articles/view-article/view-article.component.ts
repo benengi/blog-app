@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Article } from 'src/app/data/article.model';
+import { ActivatedRoute } from '@angular/router';
+import { ArticlesService } from 'src/app/services/articles/articles.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-view-article',
@@ -7,9 +11,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewArticleComponent implements OnInit {
 
-  constructor() { }
+  article: Article;
+  isLoading = true;
+
+  constructor(
+    public activeRoute: ActivatedRoute,
+    private articleService: ArticlesService
+  ) { }
 
   ngOnInit() {
+    this.getArticle().subscribe(article => {
+      this.isLoading = false;
+      this.article = article;
+    });
+  }
+
+  private getArticle(): Observable<Article> {
+    const id = this.activeRoute.snapshot.paramMap.get('id');
+    return this.articleService.getArticle(id);
   }
 
 }

@@ -107,7 +107,7 @@ export class NewArticleComponent implements OnInit {
           }
         ).then((docRef) => {
           this.isSaving = false;
-          this.router.navigate(['edit-article', docRef.id]);
+          this.router.navigate(['articles', docRef.id]);
         });
       });
     });
