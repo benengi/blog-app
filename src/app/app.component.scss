@@ -9,6 +9,7 @@ $sidebar-width: 260px;
 .main-content {
   transition: all .4s ease;
   box-shadow: 0 0 10px 0 rgba(0,0,0,.2);
+  overflow: auto;
   height: 100vh;
 }
 
@@ -23,7 +24,6 @@ $sidebar-width: 260px;
 
 .content {
   width: 100%;
-  padding: 0 10px;
   margin: auto;
   max-width: 100%; // this shall scale later on
 }

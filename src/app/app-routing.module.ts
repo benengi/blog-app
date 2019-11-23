@@ -7,9 +7,17 @@ const routes: Routes = [
     path: '', component: HomeComponent
   },
   {
-    path: 'editor',
-    loadChildren: './components/editor/editor.module#EditorModule'
-  }
+    path: 'new',
+    loadChildren: './components/articles/new-article/new-article.module#NewArticleModule'
+  },
+  {
+    path: 'edit-article',
+    loadChildren: './components/articles/edit-article/edit-article.module#EditArticleModule'
+  },
+  {
+    path: 'articles',
+    loadChildren: './components/articles/view-article/view-article.module#ViewArticleModule'
+  },
 ];
 
 @NgModule({

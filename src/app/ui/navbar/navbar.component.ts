@@ -34,8 +34,12 @@ export class NavbarComponent implements OnInit {
     });
   }
 
+  protected navigateToHome() {
+    this.router.navigateByUrl('');
+  }
+
   protected navigateToEditor() {
-    this.router.navigateByUrl('editor');
+    this.router.navigateByUrl('new');
   }
 
 }
