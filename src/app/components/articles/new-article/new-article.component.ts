@@ -1,44 +1,93 @@
 import { Component, OnInit } from '@angular/core';
+// Editor JS
 import EditorJS from '@editorjs/editorjs';
 import Header from '@editorjs/header';
 import List from '@editorjs/list';
 import Embed from '@editorjs/embed';
 import ImageTool from '@editorjs/image';
 
-import { ArticlesService } from 'src/app/services/articles/articles.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { User } from 'src/app/data/user.model';
+import { ArticlesService } from 'src/app/services/articles/articles.service';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
+import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { User } from 'src/app/data/user.model';
 
 @Component({
-  selector: 'app-editor',
-  templateUrl: './editor.component.html',
-  styleUrls: ['./editor.component.scss']
+  selector: 'app-new-article',
+  templateUrl: './new-article.component.html',
+  styleUrls: ['./new-article.component.scss']
 })
-export class EditorComponent implements OnInit {
+export class NewArticleComponent implements OnInit {
   editor: EditorJS;
   titleEditor: EditorJS;
-  photoEditor: EditorJS;
+
+  /* Firestore Image Upload Variables */
+  task: AngularFireUploadTask;
+  // Progress monitoring
+  percentage: Observable<number>;
+  snapshot: Observable<any>;
+  // Download URL
+  downloadURL: Observable<string>;
+  // State for dropzone CSS toggling
+  isHovering: boolean;
+
+  // User and Loading
   user: User;
   isSaving = false;
 
   constructor(
     private auth: AuthService,
     private articleService: ArticlesService,
-    private router: Router) {
-  }
+    private router: Router,
+    private storage: AngularFireStorage,
+    private db: AngularFirestore
+  ) { }
 
   ngOnInit() {
     this.auth.user$.subscribe(user => {
       this.user = user;
       this.initTitleEditor();
       this.initBodyEditor();
-      this.initPhotoURLEditor();
+      // this.initPhotoURLEditor();
     });
   }
 
-  initEditor() {
+  toggleHover(event: boolean) {
+    this.isHovering = event;
+  }
+
+  startUpload(event: FileList) {
+    // The File object
+    const file = event.item(0);
+
+    // Client-side validation example
+    if (file.type.split('/')[0] !== 'image') {
+      console.error('unsupported file type :( ');
+      return;
+    }
+
+    // The storage path
+    const path = `test/${new Date().getTime()}_${file.name}`;
+
+    // Totally optional metadata
+    const customMetadata = { app: 'My AngularFire-powered PWA!' };
+
+    // The main task
+    this.task = this.storage.upload(path, file, { customMetadata });
+
+    // Progress monitoring
+    this.percentage = this.task.percentageChanges();
+    this.snapshot   = this.task.snapshotChanges();
+
+    // The file's download URL
+    // this.downloadURL = this.task.downloadURL();
+  }
+
+  // Determines if the upload task is active
+  isActive(snapshot) {
+    return snapshot.state === 'running' && snapshot.bytesTransferred < snapshot.totalBytes;
   }
 
   save() {
@@ -78,7 +127,7 @@ export class EditorComponent implements OnInit {
 
   private initBodyEditor() {
     this.editor = new EditorJS({
-      holderId: 'editorjs',
+      holderId: 'body',
       tools: {
         header: {
           class: Header,
@@ -104,20 +153,4 @@ export class EditorComponent implements OnInit {
     });
   }
 
-  private initPhotoURLEditor() {
-    this.photoEditor = new EditorJS({
-      holderId: 'photo',
-      tools: {
-        image: {
-          class: ImageTool,
-          config: {
-            endpoints: {
-              byFile: environment.firebase.storageBucket
-            }
-          }
-        }
-      },
-      initialBlock: 'image'
-    });
-  }
 }

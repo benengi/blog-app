@@ -7,8 +7,8 @@ const routes: Routes = [
     path: '', component: HomeComponent
   },
   {
-    path: 'editor',
-    loadChildren: './components/editor/editor.module#EditorModule'
+    path: 'new',
+    loadChildren: './components/articles/new-article/new-article.module#NewArticleModule'
   },
   {
     path: 'edit-article',
