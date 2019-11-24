@@ -23,8 +23,14 @@ $sidebar-width: 260px;
 }
 
 .content {
-  width: 100%;
-  margin: auto;
   max-width: 100%; // this shall scale later on
 }
 
+@media only screen and (min-width: 768px) {
+
+  .content {
+    margin: 0 2rem;
+    max-width: 100%; // this shall scale later on
+  }
+
+}
