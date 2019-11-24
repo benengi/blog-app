@@ -3,18 +3,19 @@ import { CommonModule } from '@angular/common';
 import { EditArticleComponent } from './edit-article.component';
 import { Routes, RouterModule } from '@angular/router';
 import { UiModule } from 'src/app/ui/ui.module';
-import { FirestoreDatePipe } from 'src/app/pipes/firestoreDate.pipe';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 const routes: Routes = [
   { path: ':id', component: EditArticleComponent },
 ];
 
 @NgModule({
-  declarations: [EditArticleComponent, FirestoreDatePipe],
+  declarations: [EditArticleComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    UiModule
+    UiModule,
+    PipesModule
   ]
 })
 export class EditArticleModule { }

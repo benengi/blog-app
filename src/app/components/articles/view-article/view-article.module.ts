@@ -2,19 +2,20 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ViewArticleComponent } from './view-article.component';
 import { Routes, RouterModule } from '@angular/router';
-import { FirestoreDatePipe } from 'src/app/pipes/firestoreDate.pipe';
 import { UiModule } from 'src/app/ui/ui.module';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 const routes: Routes = [
   { path: ':id', component: ViewArticleComponent },
 ];
 
 @NgModule({
-  declarations: [ViewArticleComponent, FirestoreDatePipe],
+  declarations: [ViewArticleComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    UiModule
+    UiModule,
+    PipesModule
   ]
 })
 export class ViewArticleModule { }

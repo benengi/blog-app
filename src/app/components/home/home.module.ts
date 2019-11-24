@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
-import { FirestoreDatePipe } from 'src/app/pipes/firestoreDate.pipe';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
-  declarations: [HomeComponent, FirestoreDatePipe],
+  declarations: [HomeComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    PipesModule
   ]
 })
 export class HomeModule { }
