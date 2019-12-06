@@ -26,6 +26,17 @@ export class ArticlesService {
     return this.articlesCol.valueChanges({ id: 'id' });
   }
 
+  getRestofArticles(numOfArticles: number, skip: number): Observable<Article[]> {
+    this.articlesCol = this.afs.collection('articles',
+      ref => ref
+      .orderBy('created', 'desc')
+      .startAt(skip)
+      .limit(numOfArticles)
+    );
+
+    return this.articlesCol.valueChanges({ id: 'id' });
+  }
+
   getArticle(id: string) {
     this.articlesCol = this.afs.collection('articles');
     return id ? this.articlesCol.doc<Article>(id).valueChanges().pipe(

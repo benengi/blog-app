@@ -14,13 +14,11 @@ export class HomeComponent implements OnInit {
   featuredArticles: Article[];
 
   constructor(
-    private articlesService: ArticlesService,
-    private storage: AngularFireStorage) { }
+    private articlesService: ArticlesService) { }
 
   ngOnInit() {
     this.articlesService.getLatestArticles(3).subscribe(articles => {
       this.featuredArticles = articles;
-      console.log(this.featuredArticles);
     });
   }
 
