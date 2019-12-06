@@ -11,9 +11,6 @@ export class ArticleListComponent implements OnInit {
   constructor(private articlesService: ArticlesService) { }
 
   ngOnInit() {
-    this.articlesService.getRestofArticles(3, 1).subscribe(articles => {
-      console.log(articles);
-    });
   }
 
 }
