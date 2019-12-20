@@ -14,21 +14,25 @@ export class HomeComponent implements OnInit {
 
   featuredArticles: Article[];
   mainList: Article[];
+  currentPage: Article[];
 
   constructor(
   private pagingService: PagingService) { }
 
   ngOnInit() {
     this.pagingService.firstPage(3).subscribe(articles => {
-      this.featuredArticles = articles;
-      console.log(this.featuredArticles);
-      this.getMainList(this.featuredArticles[this.featuredArticles.length - 1].id);
+      console.log(articles);
+      this.featuredArticles = articles.map(article => article.data());
+      this.currentPage = this.featuredArticles;
+      this.getMainList(articles[articles.length - 1]);
     });
   }
 
-  protected getMainList(id: string) {
-    this.pagingService.nextPage(id, 5).subscribe(articles => {
+  protected getMainList(article) {
+    this.pagingService.nextPage(article, 2).subscribe(articles => {
       this.mainList = articles;
+      this.currentPage = this.mainList;
+      console.log(this.mainList);
     });
   }
 
