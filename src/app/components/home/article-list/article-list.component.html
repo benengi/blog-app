@@ -1,5 +1,18 @@
 <div class="content">
   <div class="list">
-    
+    <ul>
+      <li class="article-card" *ngFor="let article of articles">
+        <div class="image">
+          <img [src]="article.photoURL" alt="Article Photo">
+        </div>
+        <div class="meta">
+          <h3 class="article-card-title">{{ article.title }}</h3>
+          <div class="info">
+            <div class="author">By {{ article.author }}</div>
+            <div class="time">{{ article.created | firestoreDate }}</div>
+          </div>
+        </div>
+      </li>
+    </ul>
   </div>
 </div>

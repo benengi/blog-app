@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
   }
 
   protected getMainList(article) {
-    this.pagingService.nextPage(article, 2).subscribe(articles => {
+    this.pagingService.nextPage(article, 5).subscribe(articles => {
       this.mainList = articles;
       this.currentPage = this.mainList;
       console.log(this.mainList);

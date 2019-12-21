@@ -1,5 +1,51 @@
 .list {
   background-color: #F2F2F2;
   min-height: 3rem;
-  width: 66%;
+  width: 100%;
+
+  ul {
+    padding: 0;
+  }
+
+  li {
+    list-style: none;
+    margin-bottom: 1rem;
+  }
+
+  .article-card {
+    display: flex;
+
+    .image {
+      max-width: 25%;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .image:hover {
+      cursor: pointer;
+    }
+
+    .meta {
+      font-family: "Lato", "Helvetica Neue", sans-serif !important;
+      margin: 0 0.5rem;
+
+      h3:hover {
+        cursor: pointer;
+      }
+
+      .info {
+        color: #8e8e8e;
+        font-size: 0.85rem;
+      }
+      
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .list {
+    width: 66%;
+  }
 }
