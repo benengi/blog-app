@@ -2,7 +2,7 @@
   <div class="list">
     <ul>
       <li class="article-card" *ngFor="let article of articles">
-        <div class="image">
+        <div class="image" (click)="navigateTo(article.id)">
           <img [src]="article.photoURL" alt="Article Photo">
         </div>
         <div class="meta">

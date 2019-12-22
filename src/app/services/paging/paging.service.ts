@@ -27,15 +27,17 @@ export class PagingService {
   }
 
   nextPage(last: any, pageSize: number) {
-    const NUM_OF_FEATURED_OF_ARTICLES = 3;
+    console.log(last);
     this.articlesCol = this.afs.collection('articles',
       ref => ref
       .orderBy('created', 'desc')
       .startAfter(last)
       .limit(pageSize)
     );
-    console.log('next');
-    return this.articlesCol.valueChanges({ idField: 'id' });
+    // return this.articlesCol.valueChanges({ idField: 'id' });
+    return this.articlesCol.snapshotChanges().pipe(
+      map(articles => articles.map(item => item.payload.doc))
+    );
   }
 
   prevPage(first: AngularFirestoreDocument, pageSize: number) {
