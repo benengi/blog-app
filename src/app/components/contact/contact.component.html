@@ -9,10 +9,10 @@
         <input class="email-input" type="text" formControlName="email" placeholder="Email">
       </div>
       <div class="message">
-        <textarea class="name-input" type="text" formControlName="name" placeholder="Message"></textarea>
+        <textarea class="name-input" type="text" formControlName="message" placeholder="Message"></textarea>
       </div>
 
-      <button mat-raised-button class="submit-btn" type="submit" (click)="submitForm()">Send Message</button>
+      <button mat-raised-button class="submit-btn" type="submit" (click)="submitForm()" [disabled]="isSending">Send Message</button>
     </form>
   </div>
 </div>
