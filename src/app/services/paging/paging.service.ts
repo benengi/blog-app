@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Article } from 'src/app/data/article.model';
-import { skip, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -36,7 +36,7 @@ export class PagingService {
     );
   }
 
-  prevPage(first: AngularFirestoreDocument, pageSize: number) {
+  prevPage(first: any, pageSize: number) {
     this.articlesCol = this.afs.collection('articles',
       ref => ref
       .orderBy('created', 'desc')

@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Article } from 'src/app/data/article.model';
-import { ArticlesService } from 'src/app/services/articles/articles.service';
-import { AngularFireStorage } from '@angular/fire/storage';
-import { Observable } from 'rxjs';
 import { PagingService } from 'src/app/services/paging/paging.service';
 
 @Component({
