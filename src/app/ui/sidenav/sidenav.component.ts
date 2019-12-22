@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthComponent } from 'src/app/components/auth/auth.component';
 import { User } from 'src/app/data/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -12,9 +13,19 @@ import { User } from 'src/app/data/user.model';
 export class SidenavComponent implements OnInit {
 
   @Input() user: User;
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog,
+    private router: Router) { }
 
   ngOnInit() {
+  }
+
+  protected notYetImplemented() {
+    console.log('not yet implemented');
+  }
+
+  protected navigateTo(route: string) {
+    this.router.navigate([route]);
   }
 
   protected openLogin() {

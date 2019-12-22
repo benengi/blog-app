@@ -31,6 +31,13 @@ mat-list-item {
   font-family: 'Lato', sans-serif;
 }
 
+.main-nav {
+  mat-list-item:hover {
+    cursor: pointer;
+  }
+}
+
+
 #sidebar-content.sidebar-opened {
   transform: translateX(0);
 }

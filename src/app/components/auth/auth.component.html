@@ -2,19 +2,9 @@
     <!-- template will replace this div -->
     <!-- Loading Screen -->
 </div>
-<!--<div id="close-btn">
-  <button mat-fab (click)="close()">
-    <mat-icon>close</mat-icon>
-  </button>
-</div> -->
+
 <!-- User NOT logged in -->
 <ng-template #guest>
-    <!-- <h3>Howdy, GUEST</h3>
-    <p>Login to get started...</p>
-
-    <button (click)="auth.googleSignin()">
-        <i class="fa fa-google"></i> Connect Google
-    </button> -->
     <div id="close-btn">
       <button mat-fab (click)="close()">
         <mat-icon>close</mat-icon>
@@ -27,7 +17,7 @@
         <app-login></app-login>
       </ng-template>
     </mat-tab>
-    <mat-tab label="Register">
+    <mat-tab label="Register (More Bugs than a Rainforest - Don't use!)">
       <ng-template matTabContent>
         <app-register></app-register>
       </ng-template>
@@ -37,9 +27,9 @@
 
 <!-- User logged in -->
 <ng-template #authenticated>
-    <div *ngIf="auth.user$ | async as user">
+    <div class="account" *ngIf="auth.user$ | async as user">
         <h3>Howdy, {{ user.displayName }}</h3>
-        <img  [src]="user.photoURL">
+        <img class="account-photo" [src]="user.photoURL">
         <p>UID: {{ user.uid }}</p>
         <button (click)="auth.signOut()">Logout</button>
     </div>

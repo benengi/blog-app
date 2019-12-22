@@ -3,26 +3,29 @@
     <mat-list>
       <mat-list-item (click)="openLogin()">
         <mat-icon class="list-icon">account_circle</mat-icon>
-        <p>Login</p>
+        <p *ngIf="!user; else loggedIn">Login</p>
+        <ng-template #loggedIn>
+          <p>Account</p>
+        </ng-template>
       </mat-list-item>
 
       <mat-divider></mat-divider>
 
-      <mat-list-item>
+      <mat-list-item (click)="navigateTo('')">
         <mat-icon class="list-icon">home</mat-icon>
         <p>Home</p>
       </mat-list-item>
 
       <mat-divider></mat-divider>
 
-      <mat-list-item>
+      <mat-list-item (click)="notYetImplemented()">
         <mat-icon class="list-icon">library_books</mat-icon>
         <p>Articles</p>
       </mat-list-item>
 
       <mat-divider></mat-divider>
 
-      <mat-list-item *ngIf="!user || user?.membership.type === 0; else writer">
+      <mat-list-item *ngIf="!user || user?.membership?.type === 0; else writer">
         <mat-icon class="list-icon">edit</mat-icon>
         <p>Write for Us</p>
       </mat-list-item>
@@ -30,7 +33,7 @@
       <mat-divider></mat-divider>
 
       <ng-template #writer>
-        <mat-list-item>
+        <mat-list-item (click)="navigateTo('new')">
           <mat-icon class="list-icon">edit</mat-icon>
           <p>Write a Post</p>
         </mat-list-item>
