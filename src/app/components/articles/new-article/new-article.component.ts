@@ -14,6 +14,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/data/user.model';
 import { Article } from 'src/app/data/article.model';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-new-article',
@@ -23,6 +24,11 @@ import { Article } from 'src/app/data/article.model';
 export class NewArticleComponent implements OnInit {
   editor: EditorJS;
   titleEditor: EditorJS;
+
+  editorForm: FormGroup;
+  editorStyle = {
+    height: '10rem'
+  };
 
   /* Firestore Image Upload Variables */
   task: AngularFireUploadTask;
@@ -41,6 +47,7 @@ export class NewArticleComponent implements OnInit {
   isSaving = false;
 
   constructor(
+    private fb: FormBuilder,
     private auth: AuthService,
     private articleService: ArticlesService,
     private router: Router,
@@ -50,11 +57,13 @@ export class NewArticleComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.initTitleEditor();
+    this.editorForm = this.fb.group({
+      editor: new FormControl()
+    });
+
     this.auth.user$.subscribe(user => {
       this.user = user;
-      this.initTitleEditor();
-      this.initBodyEditor();
-      // this.initPhotoURLEditor();
     });
   }
 
@@ -95,38 +104,22 @@ export class NewArticleComponent implements OnInit {
   }
 
   save() {
-    this.isSaving = true;
-    this.titleEditor.save().then((titleData) => {
-      // @ts-ignore
-      const name = titleData.blocks[0].data.text;
-      this.editor.save().then((outputData) => {
-        const imgURL$ = this.getImgURL(this.imgPath);
-        imgURL$.subscribe(url => {
-          this.articleService.createArticle(
-            {
-              uid: this.user.uid,
-              author: this.user.displayName,
-              title: name,
-              post: outputData.blocks,
-              created: new Date(titleData.time),
-              updated: new Date(titleData.time),
-              photoURL: url
-            }
-          ).then((docRef) => {
-            this.isSaving = false;
-            this.router.navigate(['articles', docRef.id]);
-          });
-        });
-      });
-    });
-  }
-
-  private getImgURL(photoURL: string): Observable<string> {
-    const storageRef = this.storage.ref(photoURL);
-    return storageRef.getDownloadURL().pipe(url => {
-      return url;
-    });
-
+    // this.isSaving = true;
+    /* this.articleService.createArticle(
+      {
+        uid: this.user.uid,
+        author: this.user.displayName,
+        title: name,
+        post: outputData.blocks,
+        created: new Date(titleData.time),
+        updated: new Date(titleData.time),
+        photoURL: url
+      }
+    ).then((docRef) => {
+      this.isSaving = false;
+      this.router.navigate(['articles', docRef.id]);
+    }); */
+    console.log(this.editorForm.value);
   }
 
   private initTitleEditor() {
@@ -138,34 +131,6 @@ export class NewArticleComponent implements OnInit {
         header: Header
       },
       initialBlock: 'header'
-    });
-  }
-
-  private initBodyEditor() {
-    this.editor = new EditorJS({
-      holderId: 'body',
-      tools: {
-        header: {
-          class: Header,
-          shortcut: 'CMD+SHIFT+H',
-          inlineToolbar: ['link']
-        },
-        list: {
-          class: List,
-          inlineToolbar: [
-            'link',
-            'bold'
-          ]
-        },
-        embed: {
-          class: Embed,
-          config: {
-            services: {
-              youtube: true
-            }
-          }
-        }
-      }
     });
   }
 

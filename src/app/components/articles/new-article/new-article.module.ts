@@ -4,6 +4,8 @@ import { NewArticleComponent } from './new-article.component';
 import { Routes, RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/app/material.module';
 import { UiModule } from 'src/app/ui/ui.module';
+import { QuillModule } from 'ngx-quill';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: '', component: NewArticleComponent },
@@ -15,6 +17,8 @@ const routes: Routes = [
     CommonModule,
     MaterialModule,
     UiModule,
+    QuillModule.forRoot(),
+    ReactiveFormsModule,
     RouterModule.forChild(routes)
   ]
 })

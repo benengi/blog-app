@@ -38,8 +38,12 @@ body { margin: 0; font-family: 'Lato', "Helvetica Neue", sans-serif !important; 
   justify-content: center;
 }
 
-
 .ce-header {
   text-align: center;
   font-size: 4rem;
+}
+
+// Quill JS Styling
+.ql-container.ql-snow {
+  height: 10rem;
 }
