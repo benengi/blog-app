@@ -19,22 +19,18 @@ export class PagingService {
       .orderBy('created', 'desc')
       .limit(pageSize)
     );
-
-    // return this.articlesCol.valueChanges({ idField: 'id' });
     return this.articlesCol.snapshotChanges().pipe(
       map(articles => articles.map(item => item.payload.doc))
     );
   }
 
   nextPage(last: any, pageSize: number) {
-    console.log(last);
     this.articlesCol = this.afs.collection('articles',
       ref => ref
       .orderBy('created', 'desc')
       .startAfter(last)
       .limit(pageSize)
     );
-    // return this.articlesCol.valueChanges({ idField: 'id' });
     return this.articlesCol.snapshotChanges().pipe(
       map(articles => articles.map(item => item.payload.doc))
     );
