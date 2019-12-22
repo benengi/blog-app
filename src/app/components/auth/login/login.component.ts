@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  protected loginForm: FormGroup;
+  loginForm: FormGroup;
 
   constructor(
     private auth: AuthService,

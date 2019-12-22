@@ -11,7 +11,7 @@ export class AuthComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<AuthComponent>,
-    protected auth: AuthService) { }
+    public auth: AuthService) { }
 
   ngOnInit() {
   }

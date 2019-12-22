@@ -8,7 +8,7 @@ import { User } from './data/user.model';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  protected loading = true;
+  loading = true;
   protected user: User;
 
   constructor(private auth: AuthService) {

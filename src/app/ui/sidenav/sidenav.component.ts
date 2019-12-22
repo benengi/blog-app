@@ -20,15 +20,15 @@ export class SidenavComponent implements OnInit {
   ngOnInit() {
   }
 
-  protected notYetImplemented() {
+  notYetImplemented() {
     console.log('not yet implemented');
   }
 
-  protected navigateTo(route: string) {
+  navigateTo(route: string) {
     this.router.navigate([route]);
   }
 
-  protected openLogin() {
+  openLogin() {
     const dialogRef = this.dialog.open(AuthComponent, {
       width: '100vw',
       data: {}

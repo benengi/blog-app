@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 
-  protected toggleSidebar() {
+  toggleSidebar() {
     const mainContent = document.getElementsByClassName('main-content')[0];
     const sidebar = document.getElementById('sidebar-content');
 
@@ -28,21 +28,21 @@ export class NavbarComponent implements OnInit {
     sidebar.classList.toggle('sidebar-opened');
   }
 
-  protected openLogin() {
+  openLogin() {
     const dialogRef = this.dialog.open(AuthComponent, {
       data: {}
     });
   }
 
-  protected navigateToHome() {
+  navigateToHome() {
     this.router.navigateByUrl('');
   }
 
-  protected navigateToEditor() {
+  navigateToEditor() {
     this.router.navigateByUrl('new');
   }
 
-  protected navigateToContact() {
+  navigateToContact() {
     this.router.navigateByUrl('contact-us');
   }
 
