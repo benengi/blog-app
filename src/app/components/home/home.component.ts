@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Article } from 'src/app/data/article.model';
 import { PagingService } from 'src/app/services/paging/paging.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -17,11 +18,12 @@ export class HomeComponent implements OnInit {
   currentLastArticle: any;
 
   constructor(
-  private pagingService: PagingService) { }
+  private pagingService: PagingService,
+  private router: Router) { }
 
   ngOnInit() {
     this.pagingService.firstPage(3).subscribe(articles => {
-      this.featuredArticles = articles.map(article => article.data());
+      this.featuredArticles = articles.map(article => ({ id: article.id, ...article.data() }));
       this.currentPage = this.featuredArticles;
       this.currentLastArticle = articles[articles.length - 1];
       this.getMainList();
@@ -30,6 +32,10 @@ export class HomeComponent implements OnInit {
 
   next() {
     this.getMainList();
+  }
+
+  navigateTo(id: string) {
+    this.router.navigate(['articles', id]);
   }
 
   protected getMainList() {

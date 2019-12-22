@@ -6,7 +6,7 @@
           <img [src]="article.photoURL" alt="Article Photo">
         </div>
         <div class="meta">
-          <h3 class="article-card-title">{{ article.title }}</h3>
+          <h3 class="article-card-title" (click)="navigateTo(article.id)">{{ article.title }}</h3>
           <div class="info">
             <div class="author">By {{ article.author }}</div>
             <div class="time">{{ article.created | firestoreDate }}</div>

@@ -2,6 +2,10 @@
   display: none;
 }
 
+.nav-brand:hover {
+  cursor: pointer;
+}
+
 .nav-content {
   background-color: white;
 }
@@ -17,10 +21,6 @@
 
   .nav-brand {
     margin-right: 1rem;
-  }
-
-  .nav-brand:hover {
-    cursor: pointer;
   }
 
   .nav {

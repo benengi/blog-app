@@ -7,7 +7,7 @@
     }
     "
     >
-      <h3 class="featured-article-title">{{ featuredArticles[0].title }}</h3>
+      <h3 class="featured-article-title" (click)="navigateTo(featuredArticles[0].id)">{{ featuredArticles[0].title }}</h3>
       <div class="content-meta">
         <ul class="info">
           <li class="byline" id="author">By {{ featuredArticles[0].author }}</li>
@@ -25,7 +25,7 @@
         }
         "></div>
         <div class="card-content">
-          <h3 class="featured-article-title">{{ featuredArticles[1].title }}</h3>
+          <h3 class="featured-article-title" (click)="navigateTo(featuredArticles[1].id)">{{ featuredArticles[1].title }}</h3>
           <div class="content-meta">
             <ul class="info">
               <li class="byline" id="author">By: {{ featuredArticles[1].author }}</li>
@@ -44,7 +44,7 @@
         }
         "></div>
         <div class="card-content">
-          <h3 class="featured-article-title">{{ featuredArticles[2].title }}</h3>
+          <h3 class="featured-article-title" (click)="navigateTo(featuredArticles[2].id)">{{ featuredArticles[2].title }}</h3>
           <div class="content-meta">
             <ul class="info">
               <li class="byline" id="author">By: {{ featuredArticles[2].author }}</li>
