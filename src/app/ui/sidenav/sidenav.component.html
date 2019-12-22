@@ -25,7 +25,9 @@
 
       <mat-divider></mat-divider>
 
-      <mat-list-item *ngIf="!user || user?.membership?.type === 0; else writer">
+      <mat-list-item 
+      *ngIf="!user || user?.membership?.type === 0; else writer" 
+      (click)="navigateTo('contact-us')">
         <mat-icon class="list-icon">edit</mat-icon>
         <p>Write for Us</p>
       </mat-list-item>
@@ -42,7 +44,7 @@
   </div>
   <div class="footer-nav">
     <mat-list>
-      <mat-list-item>
+      <mat-list-item (click)="navigateTo('contact-us')">
         <p>Contact Us</p>
       </mat-list-item>
       <mat-divider></mat-divider>
