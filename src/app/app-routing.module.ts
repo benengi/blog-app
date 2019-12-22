@@ -18,6 +18,10 @@ const routes: Routes = [
     path: 'articles',
     loadChildren: './components/articles/view-article/view-article.module#ViewArticleModule'
   },
+  {
+    path: 'contact-us',
+    loadChildren: './components/contact/contact.module#ContactModule'
+  },
 ];
 
 @NgModule({

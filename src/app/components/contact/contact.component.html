@@ -1,0 +1,18 @@
+<div class="content">
+  <div class="contact-container">
+    <div class="form-title">Send us a Message</div>
+    <form [formGroup]="contactForm">
+      <div class="name">
+        <input class="name-input" type="text" formControlName="name" placeholder="Name">
+      </div>
+      <div class="email">
+        <input class="email-input" type="text" formControlName="email" placeholder="Email">
+      </div>
+      <div class="message">
+        <textarea class="name-input" type="text" formControlName="message" placeholder="Message"></textarea>
+      </div>
+
+      <button mat-raised-button class="submit-btn" type="submit" (click)="submitForm()" [disabled]="isSending">Send Message</button>
+    </form>
+  </div>
+</div>

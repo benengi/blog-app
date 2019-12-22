@@ -42,4 +42,8 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl('new');
   }
 
+  protected navigateToContact() {
+    this.router.navigateByUrl('contact-us');
+  }
+
 }
