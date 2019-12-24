@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
   protected getMainList() {
     this.pagingService.nextPage(this.currentLastArticle, this.NUMBER_OF_ARTICLES_DISPLAYED).subscribe(articles => {
       this.currentLastArticle = articles[articles.length - 1];
-      this.mainList = articles.map(article => article.data());
+      this.mainList = articles.map(article => ({ id: article.id, ...article.data() }));
       this.currentPage = this.mainList;
     });
   }
