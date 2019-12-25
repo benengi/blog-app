@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Article } from 'src/app/data/article.model';
 import { PagingService } from 'src/app/services/paging/paging.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { User } from 'src/app/data/user.model';
 
 @Component({
   selector: 'app-home',
@@ -16,10 +18,12 @@ export class HomeComponent implements OnInit {
   mainList: Article[];
   currentPage: Article[];
   currentLastArticle: any;
+  user: User;
 
   constructor(
   private pagingService: PagingService,
-  private router: Router) { }
+  private router: Router,
+  protected auth: AuthService) { }
 
   ngOnInit() {
     this.pagingService.firstPage(3).subscribe(articles => {
@@ -28,6 +32,14 @@ export class HomeComponent implements OnInit {
       this.currentLastArticle = articles[articles.length - 1];
       this.getMainList();
     });
+
+    this.auth.user$.subscribe(user => {
+      this.user = user;
+    });
+  }
+
+  edit(id: string) {
+    id ? this.router.navigate(['edit', id]) : console.log('error!');
   }
 
   next() {

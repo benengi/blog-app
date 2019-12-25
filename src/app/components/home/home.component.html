@@ -7,7 +7,12 @@
     }
     "
     >
-      <h3 class="featured-article-title" (click)="navigateTo(featuredArticles[0]?.id)">{{ featuredArticles[0].title }}</h3>
+      <div class="feat-header">
+        <h3 class="featured-article-title" (click)="navigateTo(featuredArticles[0]?.id)">
+          {{ featuredArticles[0].title }}
+        </h3>
+        <h3 *ngIf="user?.membership?.type > 0" (click)="edit(featuredArticles[0].id)"><mat-icon>edit</mat-icon></h3>
+      </div>
       <div class="content-meta">
         <ul class="info">
           <li class="byline" id="author">By {{ featuredArticles[0]?.author }}</li>
@@ -25,7 +30,10 @@
         }
         "></div>
         <div class="card-content">
-          <h3 class="featured-article-title" (click)="navigateTo(featuredArticles[1]?.id)">{{ featuredArticles[1]?.title }}</h3>
+          <div class="feat-header">
+            <h3 class="featured-article-title" (click)="navigateTo(featuredArticles[1]?.id)">{{ featuredArticles[1]?.title }}</h3>
+            <h3 *ngIf="user?.membership?.type > 0" class="secondary-feature-icon" (click)="edit(featuredArticles[1]?.id)"><mat-icon>edit</mat-icon></h3>
+          </div>
           <div class="content-meta">
             <ul class="info">
               <li class="byline" id="author">By: {{ featuredArticles[1]?.author }}</li>
@@ -43,7 +51,10 @@
         }
         "></div>
         <div class="card-content">
-          <h3 class="featured-article-title" (click)="navigateTo(featuredArticles[2]?.id)">{{ featuredArticles[2]?.title }}</h3>
+          <div class="feat-header">
+            <h3 class="featured-article-title" (click)="navigateTo(featuredArticles[2]?.id)">{{ featuredArticles[2]?.title }}</h3>
+            <h3 *ngIf="user?.membership?.type > 0" class="secondary-feature-icon" (click)="edit(featuredArticles[2]?.id)"><mat-icon>edit</mat-icon></h3>
+          </div>
           <div class="content-meta">
             <ul class="info">
               <li class="byline" id="author">By: {{ featuredArticles[2]?.author }}</li>
@@ -56,7 +67,7 @@
     </div>
   </div>
   <div class="article-list-container">
-    <app-article-list [articles]="mainList"></app-article-list>
+    <app-article-list [articles]="mainList" [isWriter]="user?.membership?.type"></app-article-list>
     <div class="load-more-div">
       <a href="#" class="load-more" (click)="next()">Load more Articles</a>
     </div>

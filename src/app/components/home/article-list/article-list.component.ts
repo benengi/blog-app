@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 export class ArticleListComponent implements OnInit {
 
   @Input() articles: Article[];
+  @Input() isWriter: boolean;
+
   constructor(
     private router: Router) { }
 
@@ -18,6 +20,10 @@ export class ArticleListComponent implements OnInit {
 
   navigateTo(id: string) {
     this.router.navigate(['articles', id]);
+  }
+
+  edit(id: string) {
+    this.router.navigate(['edit', id]);
   }
 
 }

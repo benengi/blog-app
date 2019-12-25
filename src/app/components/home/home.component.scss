@@ -97,6 +97,18 @@
   }
 }
 
+.feat-header {
+  display: flex;
+
+  .secondary-feature-icon {
+    margin-left: 0.7rem;
+  }
+
+  mat-icon:hover {
+    cursor: pointer;
+  }
+}
+
 @media only screen and (min-width: 768px) {
   .featured-cards {
     display: flex;
