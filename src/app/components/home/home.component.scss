@@ -90,6 +90,11 @@
 
 .article-list-container {
   background-color: #F2F2F2;
+  padding-bottom: 1rem;
+
+  .load-more-div {
+    margin: 0.5rem;
+  }
 }
 
 @media only screen and (min-width: 768px) {

@@ -11,7 +11,7 @@ const routes: Routes = [
     loadChildren: './components/articles/new-article/new-article.module#NewArticleModule'
   },
   {
-    path: 'edit-article',
+    path: 'edit',
     loadChildren: './components/articles/edit-article/edit-article.module#EditArticleModule'
   },
   {

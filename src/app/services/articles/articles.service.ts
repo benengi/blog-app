@@ -44,7 +44,7 @@ export class ArticlesService {
     ) : of(null);
   }
 
-  updateArticle(id: string, article: Article) {
+  updateArticle(id: string, article: Partial<Article>) {
     return this.afs.doc<Article>(`articles/${id}`).update({...article});
   }
 }

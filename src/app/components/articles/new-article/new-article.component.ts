@@ -4,7 +4,6 @@ import EditorJS from '@editorjs/editorjs';
 import Header from '@editorjs/header';
 import List from '@editorjs/list';
 import Embed from '@editorjs/embed';
-import ImageTool from '@editorjs/image';
 
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ArticlesService } from 'src/app/services/articles/articles.service';
@@ -13,7 +12,6 @@ import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/data/user.model';
-import { Article } from 'src/app/data/article.model';
 
 @Component({
   selector: 'app-new-article',
